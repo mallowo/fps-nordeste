@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
+
+    //declaração das variáveis
     public float mouseSensitivity = 100f;
 
     public Transform playerBody;
@@ -12,8 +12,9 @@ public class MouseLook : MonoBehaviour
     float xRotation = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        //bloqueio do cursor in game
         Cursor.lockState = CursorLockMode.Locked;
         crosshair.SetActive(true);
     }
@@ -25,10 +26,16 @@ public class MouseLook : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+        //inverter rotação Y
         xRotation -= mouseY;
+
+        //limitar rotação X
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        //
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        //rotacionar o player de acordo com a movimentação do mouse
         playerBody.Rotate(Vector3.up * mouseX);
 
     }

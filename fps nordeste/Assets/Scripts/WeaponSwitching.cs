@@ -13,6 +13,7 @@ public class WeaponSwitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //criar um bool que defina se a arma ta no inventario do jogador ou nao, se tiver entao ela vai poder passar dentro desse scroll se nao ela nao passa.
         int previousSelectedWeapon = selectedWeapon;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
